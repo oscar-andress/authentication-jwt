@@ -17,7 +17,6 @@ import demo.authentication.mapper.UserMapper;
 import demo.authentication.service.UserService;
 
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -51,7 +50,7 @@ public class UserController {
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
-    @PutMapping("/update/pwd")
+    @PostMapping("/update/pwd")
     public ResponseEntity<UserUpdateResponse> updateUserPwd(@RequestBody UserUpdateRequest request) {
         User updatedUser = userService.updatePwd(request);
         return new ResponseEntity<>( userMapper.toResponseUpdate(updatedUser), HttpStatus.OK);
