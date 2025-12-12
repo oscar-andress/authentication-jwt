@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 import demo.authentication.dto.request.UserRegisterRequest;
 import demo.authentication.dto.response.UserLoginResponse;
 import demo.authentication.dto.response.UserRegisterResponse;
+import demo.authentication.dto.response.UserUpdateResponse;
 import demo.authentication.entity.User;
 
 @Component
@@ -31,6 +32,14 @@ public class UserMapper {
         UserLoginResponse response = new UserLoginResponse();
         response.setUsername(user.getUsername());
         response.setJwt(user.getJwt());
+        return response;
+    }
+
+    public UserUpdateResponse toResponseUpdate(User user){
+        UserUpdateResponse response = new UserUpdateResponse();
+        response.setEmail(user.getEmail());
+        response.setRol(user.getRol());
+        response.setUsername(user.getUsername());
         return response;
     }
 }
