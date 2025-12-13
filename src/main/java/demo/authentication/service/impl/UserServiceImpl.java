@@ -7,6 +7,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import demo.authentication.dto.request.UserUpdateRequest;
 import demo.authentication.entity.User;
 import demo.authentication.repository.UserRepository;
 import demo.authentication.service.UserService;
@@ -43,18 +44,21 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public User updatePwd(User user) {
+    public User updatePwd(UserUpdateRequest request) {
 
-        User updateUser = userRepository.findById(user.getUsername())
+        // Find user
+        User updateUser = userRepository.findById(request.getUsername())
         .orElseThrow( () ->
-            new ResponseStatusException(HttpStatus.NOT_FOUND, "User "+ user.getUsername()+" not found")
+            new ResponseStatusException(HttpStatus.NOT_FOUND, "User "+ request.getUsername()+" not found")
         );
 
-        String encodedPwd = passwordEncoder.encode(user.getPwd());
-        if(passwordEncoder.matches(user.getPwd(), updateUser.getPwd())){
+        // Check current and new pwd
+        String encodedPwd = passwordEncoder.encode(request.getPwd());
+        if(passwordEncoder.matches(request.getPwd(), updateUser.getPwd())){
             throw new ResponseStatusException(HttpStatus.CONFLICT, "New password is the same as the old one");
         }
 
+        // Change pwd
         updateUser.setPwd(encodedPwd);
         return userRepository.save(updateUser);
     }

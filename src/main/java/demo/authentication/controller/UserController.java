@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import demo.authentication.dto.request.UserRegisterRequest;
+import demo.authentication.dto.request.UserUpdateRequest;
 import demo.authentication.dto.response.UserRegisterResponse;
+import demo.authentication.dto.response.UserUpdateResponse;
 import demo.authentication.entity.User;
 import demo.authentication.mapper.UserMapper;
 import demo.authentication.service.UserService;
@@ -49,7 +51,8 @@ public class UserController {
     }
 
     @PostMapping("/update/pwd")
-    public ResponseEntity<User> updateUserPwd(@RequestBody User user) {
-        return new ResponseEntity<>(userService.updatePwd(user), HttpStatus.OK);
+    public ResponseEntity<UserUpdateResponse> updateUserPwd(@RequestBody UserUpdateRequest request) {
+        User updatedUser = userService.updatePwd(request);
+        return new ResponseEntity<>( userMapper.toResponseUpdate(updatedUser), HttpStatus.OK);
     }
 }
