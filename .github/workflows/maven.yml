@@ -21,23 +21,11 @@ jobs:
         distribution: 'temurin'
         cache: maven
     
-    # CAMBIO 1: Ejecutar tests primero con el profile de test
     - name: Run tests
       run: mvn clean test -Dspring.profiles.active=test
     
-    # CAMBIO 2: Build solo si los tests pasan
     - name: Build with Maven
       run: mvn -B package -DskipTests --file pom.xml
-    
-    # CAMBIO 3: Publicar resultados de tests (opcional pero útil)
-    - name: Publish Test Report
-      uses: dorny/test-reporter@v1
-      if: always()  # Corre incluso si los tests fallan
-      with:
-        name: Maven Tests
-        path: target/surefire-reports/*.xml
-        reporter: java-junit
-        fail-on-error: true
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
     - name: Update dependency graph
