@@ -1,12 +1,4 @@
-# This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-maven
-
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
-
-name: Java CI with Maven
+name: Authentication CI
 
 on:
   push:
@@ -21,14 +13,31 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+    
     - name: Set up JDK 17
       uses: actions/setup-java@v4
       with:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
+    
+    # CAMBIO 1: Ejecutar tests primero con el profile de test
+    - name: Run tests
+      run: mvn clean test -Dspring.profiles.active=test
+    
+    # CAMBIO 2: Build solo si los tests pasan
     - name: Build with Maven
-      run: mvn -B package --file pom.xml
+      run: mvn -B package -DskipTests --file pom.xml
+    
+    # CAMBIO 3: Publicar resultados de tests (opcional pero útil)
+    - name: Publish Test Report
+      uses: dorny/test-reporter@v1
+      if: always()  # Corre incluso si los tests fallan
+      with:
+        name: Maven Tests
+        path: target/surefire-reports/*.xml
+        reporter: java-junit
+        fail-on-error: true
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
     - name: Update dependency graph
