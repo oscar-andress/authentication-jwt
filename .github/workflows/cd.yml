@@ -1,0 +1,39 @@
+name: Authentication CD
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code 
+      uses: actions/checkout@v4
+    
+    - name: Login to GHCR
+      uses: docker/login-action@v3
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Set version variables
+      run: |
+        VERSION=${GITHUB_REF#refs/tags/v}
+        SHORT_SHA=${GITHUB_SHA::7}
+        echo "VERSION=$VERSION" >> $GITHUB_ENV
+        echo "IMAGE_TAG=$VERSION-$SHORT_SHA" >> $GITHUB_ENV
+
+    - name: Build and push Docker image
+      run: |
+        IMAGE=ghcr.io/${{ github.repository_owner }}/authentication
+        docker build -t $IMAGE:$IMAGE_TAG .
+        docker push $IMAGE:$IMAGE_TAG
