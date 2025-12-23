@@ -1,4 +1,4 @@
-FROM openjdk:18 AS build
+FROM eclipse-temurin:17-jdk AS build
 WORKDIR /workspace/app
 
 COPY mvnw .
@@ -9,7 +9,7 @@ COPY src src
 RUN ./mvnw install -DskipTests
 RUN mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
 
-FROM openjdk:18
+FROM eclipse-temurin:17-jre
 VOLUME /tmp
 ENV TZ=America/Guayaquil
 
