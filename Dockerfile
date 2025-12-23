@@ -1,4 +1,4 @@
-FROM openjdk:18 as build
+FROM openjdk:18 AS build
 WORKDIR /workspace/app
 
 COPY mvnw .
