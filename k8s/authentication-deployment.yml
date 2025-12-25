@@ -1,6 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  namespace: authentication
   name: authentication
   labels:
     app: authentication
@@ -29,7 +30,7 @@ spec:
         env:
         - name: SPRING_PROFILES_ACTIVE
           value: prod
-        - name: CLUD_DB_URL
+        - name: CLOUD_DB_URL
           valueFrom:
             secretKeyRef:
               name: cloud-db-secret
