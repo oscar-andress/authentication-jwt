@@ -35,3 +35,6 @@ build/
 # Spring local config
 src/main/resources/application.properties
 
+# Cloud db secret
+k8s/cloud-db-secret.yml
+
