@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: authentication
+  labels:
+    app: authentication
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: authentication
+  template:
+    metadata:
+      labels:
+        app: authentication
+    spec:
+      containers:
+      - name: authentication
+        image: ghcr.io/oscar-andress/authentication:1.0.0-abc123
+        resources:
+          requests:
+            memory: "512M"
+            cpu: "500m"
+          limits:
+            memory: "1024M"
+            cpu: "500m"
+        ports:
+        - containerPort: 8080
+        env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: prod
+        - name: CLUD_DB_URL
+          valueFrom:
+            secretKeyRef:
+              name: cloud-db-secret
+              key: CLOUD_DB_URL
+        readinessProbe:
+          initialDelaySeconds: 70
+          periodSeconds: 15
+          timeoutSeconds: 3
+          successThreshold: 2
+          failureThreshold: 2
+          httpGet:
+            path: /actuator/health
+            port: 8080
+        livenessProbe:
+          initialDelaySeconds: 80
+          periodSeconds: 15
+          timeoutSeconds: 3
+          successThreshold: 1
+          failureThreshold: 2
+          httpGet:
+            path: /actuator/health
+            port: 8080
