@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: authentication
-        image: ghcr.io/oscar-andress/authentication:1.0.0-abc123
+        image: ghcr.io/oscar-andress/authentication:1.1.0-9eecdc6
         resources:
           requests:
             memory: "512M"
