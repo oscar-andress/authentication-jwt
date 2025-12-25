@@ -6,16 +6,16 @@ metadata:
 spec: 
   project: default
   source:
-    repoURL:
+    repoURL: https://github.com/oscar-andress/authentication-jwt.git
     targetRevision: main
     path: k8s
-    destination:
-      server: https://kubernetes.default.svc
-      namespace: authentication
-    syncPolicy:
-      automated:
-        prune: true
-        selfHeal: true
-      syncOptions:
-        - CreateNamespace=true
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: authentication
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
     
