@@ -34,7 +34,7 @@ public class AuthServieImpl implements AuthService{
         
         // Check pwd
         if(!passwordEncoder.matches(request.getPwd(), userFound.getPwd())){
-            throw new ResponseStatusException(HttpStatus.CONFLICT, "Invalida credentials");
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Invalid credentials");
         }
         
         // Generate token 
