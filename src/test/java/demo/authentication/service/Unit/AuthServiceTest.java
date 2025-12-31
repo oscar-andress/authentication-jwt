@@ -1,4 +1,4 @@
-package demo.authentication.service;
+package demo.authentication.service.Unit;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -27,6 +27,7 @@ import org.springframework.web.server.ResponseStatusException;
 import demo.authentication.dto.request.UserLoginRequest;
 import demo.authentication.entity.User;
 import demo.authentication.repository.UserRepository;
+import demo.authentication.service.JwtService;
 import demo.authentication.service.impl.AuthServieImpl;
 
 @ExtendWith(MockitoExtension.class)
