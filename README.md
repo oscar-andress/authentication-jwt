@@ -1,5 +1,9 @@
 # 🔐 Auth Service – Authentication Microservice
 
+![Docker](https://img.shields.io/badge/docker-ready-blue)
+![Kubernetes](https://img.shields.io/badge/kubernetes-ready-blueviolet)
+![ArgoCD](https://img.shields.io/badge/gitops-argo--cd-orange)
+
 Authentication and authorization **microservice** built with **Spring Boot**, designed as part of a **microservices architecture** and ready for **CI/CD**, **Docker**, **Kubernetes**, and **GitOps with Argo CD**.
 
 This service is responsible for **user management**, **registration**, **login**, and **JWT token issuance/validation**, and is intended to integrate with an **API Gateway** or other backend services.
@@ -195,6 +199,7 @@ Includes **unit and integration tests** for:
 
 **Oscar Vega**
 Backend Developer – Spring Boot | Microservices 
+
 
 
 
