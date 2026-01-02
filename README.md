@@ -1,5 +1,6 @@
 # 🔐 Auth Service – Authentication Microservice
-
+![CI](https://github.com/oscar-andress/authentication-jwt/actions/workflows/ci.yml/badge.svg)
+![CD](https://github.com/oscar-andress/authentication-jwt/actions/workflows/cd.yml/badge.svg)
 ![Docker](https://img.shields.io/badge/docker-ready-blue)
 ![Kubernetes](https://img.shields.io/badge/kubernetes-ready-blueviolet)
 ![ArgoCD](https://img.shields.io/badge/gitops-argo--cd-orange)
@@ -199,6 +200,7 @@ Includes **unit and integration tests** for:
 
 **Oscar Vega**
 Backend Developer – Spring Boot | Microservices 
+
 
 
 
