@@ -49,15 +49,17 @@ This service is responsible for **user management**, **registration**, **login**
 ### 🔸 User Registration
 
 ```http
-POST /api/auth/register
+POST /v1/user/register
 ```
 
 **Request example:**
 
 ```json
 {
-  "username": "user@example.com",
-  "password": "password123"
+  "username": "user",
+  "email": "user@example.com"
+  "pwd": "password123",
+  "rol": "ADMIN"
 }
 ```
 
@@ -66,15 +68,15 @@ POST /api/auth/register
 ### 🔸 Login
 
 ```http
-POST /api/auth/login
+POST /v1/auth/login
 ```
 
 **Request example:**
 
 ```json
 {
-  "username": "user@example.com",
-  "password": "password123"
+  "username": "user",
+  "pwd": "password123"
 }
 ```
 
@@ -82,17 +84,9 @@ POST /api/auth/login
 
 ```json
 {
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+  "username":"user"
+  "jwt": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
 }
-```
-
----
-
-### 🔸 Token Validation (if applicable)
-
-```http
-GET /api/auth/validate
-Authorization: Bearer <token>
 ```
 
 ---
@@ -129,7 +123,7 @@ The project includes a **Continuous Integration and Continuous Deployment pipeli
 1. Project build
 2. Test execution
 3. Docker image build
-4. Push to container registry
+4. Push to GitHub container registry (GHCI)
 5. Kubernetes manifest update
 
 Tools used:
@@ -201,5 +195,6 @@ Includes **unit and integration tests** for:
 
 **Oscar Vega**
 Backend Developer – Spring Boot | Microservices 
+
 
 
