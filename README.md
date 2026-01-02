@@ -1,4 +1,9 @@
 # 🔐 Auth Service – Authentication Microservice
+![CI](https://github.com/oscar-andress/authentication-jwt/actions/workflows/ci.yml/badge.svg)
+![CD](https://github.com/oscar-andress/authentication-jwt/actions/workflows/cd.yml/badge.svg)
+![Docker](https://img.shields.io/badge/docker-ready-blue)
+![Kubernetes](https://img.shields.io/badge/kubernetes-ready-blueviolet)
+![ArgoCD](https://img.shields.io/badge/gitops-argo--cd-orange)
 
 Authentication and authorization **microservice** built with **Spring Boot**, designed as part of a **microservices architecture** and ready for **CI/CD**, **Docker**, **Kubernetes**, and **GitOps with Argo CD**.
 
@@ -195,6 +200,8 @@ Includes **unit and integration tests** for:
 
 **Oscar Vega**
 Backend Developer – Spring Boot | Microservices 
+
+
 
 
 
